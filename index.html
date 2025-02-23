@@ -89,8 +89,7 @@
 	map.on('locationfound', onLocationFound);
 	map.on('locationerror', onLocationError);
 
-	map.locate({setView: true, maxZoom: 16});
-	map.locate({setView: fals, maxZoom: 16});
+	map.watch({setView: true, maxZoom: 16});
   </script>
 </body>
 </html>
