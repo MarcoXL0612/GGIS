@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>SuperEasyInspectiov1.0.13</title>
+  <title>SuperEasyInspectiov1.0.14</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta charset="utf-8">
 
@@ -51,7 +51,7 @@
   // see more basemap options at https://leaflet-extras.github.io/leaflet-providers/preview/
 
   // Read markers data from data.csv
-  $.get('./FEHD_RL_converted.csv', function(csvString) {
+  $.get('./FEHD_RL_convertedv0.2.csv', function(csvString) {
 
     // Use PapaParse to convert string to array of objects
     var data = Papa.parse(csvString, {header: true, dynamicTyping: true}).data;
