@@ -1,15 +1,12 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>SuperEasyInspectiov1.0.3</title>
+  <title>SuperEasyInspectiov1.0.2</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta charset="utf-8">
 
   <!-- Load Leaflet code library - see updates at http://leafletjs.com/download.html -->
   <link rel="shortcut icon" type="image/x-icon" href="docs/images/favicon.ico" />
-
-  <script src="https://cdn.jsdelivr.net/npm/ol@v10.2.1/dist/ol.js"></script>
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/ol@v10.2.1/ol.css">
 
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
@@ -45,33 +42,12 @@
 
   // Set up initial map center and zoom level
 
-  var basemapAPI = 'https://mapapi.geodata.gov.hk/gs/api/v1.0.0/xyz/basemap/wgs84/{z}/{x}/{y}.png';
-  var labelAPI = 'https://mapapi.geodata.gov.hk/gs/api/v1.0.0/xyz/label/hk/tc/wgs84/{z}/{x}/{y}.png';
-  var attributionInfo = '<a href="https://api.portal.hkmapservice.gov.hk/disclaimer" target="_blank" class="copyrightDiv">&copy; 地圖資料由地政總署提供</a><div style="width:28px;height:28px;display:inline-flex;background:url(https://api.hkmapservice.gov.hk/mapapi/landsdlogo.jpg);background-size:28px;"></div>';
-  var map = new ol.Map({
-          controls: ol.control.defaults.defaults({attribution: false}).extend([new ol.control.Attribution({collapsible: false})]),     			
-  layers: [
-          new ol.layer.Tile({
-          source: new ol.source.XYZ({
-                  url: basemapAPI,
-					  attributions: attributionInfo			
-                        })
-                    }),
-                    new ol.layer.Tile({
-                        source: new ol.source.XYZ({
-                            url: labelAPI
-                        })
-                    })
-                ],
-                target: 'map',
-				logo: false,
-                view: new ol.View({
-                    center: ol.proj.fromLonLat([114.15, 22.35]),
-                    zoom: 11,
-                    minZoom: 10,
-                    maxZoom: 20
-                })
-            });
+  var map = L.map('map').setView([114.15, 22.35], 13)
+
+  const tiles = L.tileLayer('https://mapapi.geodata.gov.hk/gs/api/v1.0.0/xyz/basemap/wgs84/{z}/{x}/{y}.png', {
+    maxZoom: 19,
+    attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+  }).addTo(map);
 
   // see more basemap options at https://leaflet-extras.github.io/leaflet-providers/preview/
 
@@ -115,7 +91,6 @@
 	map.on('locationerror', onLocationError);
 
 	map.locate({setView: true, maxZoom: 16});
-	map.locate({setView: true, maxZoom: 16})
   </script>
 </body>
 </html>
