@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>SuperEasyInspectiov1.0.15</title>
+  <title>SuperEasyInspectiov1.0.16</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta charset="utf-8">
 
@@ -69,14 +69,20 @@
     }
 
   });
-
+	  
+  var icon = L.icon({
+      iconUrl: './marker-red.png',
+      iconSize: [20, 18],
+      iconAnchor: [10, 9]
+  });
+	  
   map.attributionControl.setPrefix(
     'View <a href="https://github.com/HandsOnDataViz/leaflet-map-csv" target="_blank">code on GitHub</a>'
   );
   function onLocationFound(e) {
 		const radius = e.accuracy / 2;
 
-		const locationMarker = L.marker(e.latlng).addTo(map)
+		const locationMarker = L.marker(e.latlng, {icon: icon}).addTo(map)
 			.bindPopup(`You are within ${radius} meters from this point`).openPopup();
 
 		const locationCircle = L.circle(e.latlng, radius).addTo(map);
